@@ -15,7 +15,7 @@ This project consist of some dependencies
 ## Pre-requisite
 ``` bash
 # Install docker desktop
-[Link](https://www.docker.com/products/docker-desktop)
+https://www.docker.com/products/docker-desktop
 ```
 
 ## Run
