@@ -20,9 +20,14 @@ https://www.docker.com/products/docker-desktop
 
 ## Run
 ``` bash
-# run all instance
-$ cd deployments 
-$ ./run.sh 
+# move to deployments
+$ cd deployments
+
+# run dependencies, make sure it running well before run services 
+$ ./run-dependencies.sh 
+
+# run services
+$ ./run-services.sh 
 ```
 
 ## Access
