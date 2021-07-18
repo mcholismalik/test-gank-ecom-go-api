@@ -21,7 +21,8 @@ https://www.docker.com/products/docker-desktop
 ## Run
 ``` bash
 # run all instance
-$ ./deployments/run.sh 
+$ cd deployments 
+$ ./run.sh 
 ```
 
 ## Access
