@@ -1,0 +1,519 @@
+basePath: /
+definitions:
+  abstraction.PaginationInfo:
+    properties:
+      count:
+        type: integer
+      more_records:
+        type: boolean
+      page:
+        type: integer
+      page_size:
+        type: integer
+      sort:
+        type: string
+      sort_by:
+        type: string
+    type: object
+  dto.ProductCreateRequest:
+    properties:
+      code:
+        type: string
+      name:
+        type: string
+      price:
+        type: integer
+      tag:
+        type: string
+    required:
+    - code
+    - name
+    - price
+    - tag
+    type: object
+  dto.ProductCreateResponse:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      id:
+        type: integer
+      modified_at:
+        type: string
+      modified_by:
+        type: string
+      name:
+        type: string
+      order_items:
+        description: relations
+        items:
+          $ref: '#/definitions/model.OrderItemEntityModel'
+        type: array
+      price:
+        type: integer
+      tag:
+        type: string
+    required:
+    - code
+    - name
+    - price
+    - tag
+    type: object
+  dto.ProductCreateResponseDoc:
+    properties:
+      body:
+        properties:
+          data:
+            $ref: '#/definitions/dto.ProductCreateResponse'
+          meta:
+            $ref: '#/definitions/response.Meta'
+        type: object
+    type: object
+  dto.ProductDeleteResponse:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      id:
+        type: integer
+      modified_at:
+        type: string
+      modified_by:
+        type: string
+      name:
+        type: string
+      order_items:
+        description: relations
+        items:
+          $ref: '#/definitions/model.OrderItemEntityModel'
+        type: array
+      price:
+        type: integer
+      tag:
+        type: string
+    required:
+    - code
+    - name
+    - price
+    - tag
+    type: object
+  dto.ProductDeleteResponseDoc:
+    properties:
+      body:
+        properties:
+          data:
+            $ref: '#/definitions/dto.ProductDeleteResponse'
+          meta:
+            $ref: '#/definitions/response.Meta'
+        type: object
+    type: object
+  dto.ProductGetByIDResponse:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      id:
+        type: integer
+      modified_at:
+        type: string
+      modified_by:
+        type: string
+      name:
+        type: string
+      order_items:
+        description: relations
+        items:
+          $ref: '#/definitions/model.OrderItemEntityModel'
+        type: array
+      price:
+        type: integer
+      tag:
+        type: string
+    required:
+    - code
+    - name
+    - price
+    - tag
+    type: object
+  dto.ProductGetByIDResponseDoc:
+    properties:
+      body:
+        properties:
+          data:
+            $ref: '#/definitions/dto.ProductGetByIDResponse'
+          meta:
+            $ref: '#/definitions/response.Meta'
+        type: object
+    type: object
+  dto.ProductGetResponseDoc:
+    properties:
+      body:
+        properties:
+          data:
+            items:
+              $ref: '#/definitions/model.ProductEntityModel'
+            type: array
+          meta:
+            $ref: '#/definitions/response.Meta'
+        type: object
+    type: object
+  dto.ProductUpdateRequest:
+    properties:
+      code:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      price:
+        type: integer
+      tag:
+        type: string
+    required:
+    - code
+    - id
+    - name
+    - price
+    - tag
+    type: object
+  dto.ProductUpdateResponse:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      id:
+        type: integer
+      modified_at:
+        type: string
+      modified_by:
+        type: string
+      name:
+        type: string
+      order_items:
+        description: relations
+        items:
+          $ref: '#/definitions/model.OrderItemEntityModel'
+        type: array
+      price:
+        type: integer
+      tag:
+        type: string
+    required:
+    - code
+    - name
+    - price
+    - tag
+    type: object
+  dto.ProductUpdateResponseDoc:
+    properties:
+      body:
+        properties:
+          data:
+            $ref: '#/definitions/dto.ProductUpdateResponse'
+          meta:
+            $ref: '#/definitions/response.Meta'
+        type: object
+    type: object
+  model.OrderItemEntityModel:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      id:
+        type: integer
+      modified_at:
+        type: string
+      modified_by:
+        type: string
+      order_id:
+        description: relations
+        type: integer
+      product_id:
+        type: integer
+    required:
+    - code
+    type: object
+  model.ProductEntityModel:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      id:
+        type: integer
+      modified_at:
+        type: string
+      modified_by:
+        type: string
+      name:
+        type: string
+      order_items:
+        description: relations
+        items:
+          $ref: '#/definitions/model.OrderItemEntityModel'
+        type: array
+      price:
+        type: integer
+      tag:
+        type: string
+    required:
+    - code
+    - name
+    - price
+    - tag
+    type: object
+  response.Meta:
+    properties:
+      info:
+        $ref: '#/definitions/abstraction.PaginationInfo'
+      message:
+        default: "true"
+        type: string
+      success:
+        default: true
+        type: boolean
+    type: object
+  response.errorResponse:
+    properties:
+      error:
+        type: string
+      meta:
+        $ref: '#/definitions/response.Meta'
+    type: object
+host: localhost:3031
+info:
+  contact: {}
+  description: This is a doc for gank-ecommerce-product.
+  title: gank-ecommerce-product
+  version: 0.0.1
+paths:
+  /products:
+    get:
+      consumes:
+      - application/json
+      description: Get products
+      parameters:
+      - in: query
+        name: created_at
+        type: string
+      - in: query
+        name: created_by
+        type: string
+      - in: query
+        name: modified_at
+        type: string
+      - in: query
+        name: modified_by
+        type: string
+      - in: query
+        name: name
+        type: string
+      - in: query
+        name: page
+        type: integer
+      - in: query
+        name: page_size
+        type: integer
+      - in: query
+        name: price
+        type: integer
+      - in: query
+        name: sort
+        type: string
+      - in: query
+        name: sort_by
+        type: string
+      - in: query
+        name: tag
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ProductGetResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get products
+      tags:
+      - products
+    post:
+      consumes:
+      - application/json
+      description: Create products
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ProductCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ProductCreateResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+      security:
+      - BearerAuth: []
+      summary: Create products
+      tags:
+      - products
+  /products/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete products
+      parameters:
+      - description: id path
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ProductDeleteResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete products
+      tags:
+      - products
+    get:
+      consumes:
+      - application/json
+      description: Get products by id
+      parameters:
+      - description: id path
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ProductGetByIDResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get products by id
+      tags:
+      - products
+    patch:
+      consumes:
+      - application/json
+      description: Update products
+      parameters:
+      - description: id path
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ProductUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ProductUpdateResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+      security:
+      - BearerAuth: []
+      summary: Update products
+      tags:
+      - products
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  order:
+    container_name: order01
+    image: mcholismalik/gank-ecom-order:latest
+    ports:
+      - "3032:3032"
+    networks:
+      - my-postgres-net
+      - my-elastic-net
+
+networks:
+  my-postgres-net:
+    name: postgres_net
+  my-elastic-net:
+    name: elastic_net

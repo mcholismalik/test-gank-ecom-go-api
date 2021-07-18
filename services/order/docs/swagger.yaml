@@ -1,0 +1,501 @@
+basePath: /
+definitions:
+  abstraction.PaginationInfo:
+    properties:
+      count:
+        type: integer
+      more_records:
+        type: boolean
+      page:
+        type: integer
+      page_size:
+        type: integer
+      sort:
+        type: string
+      sort_by:
+        type: string
+    type: object
+  dto.OrderCreateRequest:
+    properties:
+      order_items:
+        items:
+          properties:
+            product_id:
+              type: integer
+            qty:
+              type: integer
+          type: object
+        type: array
+    type: object
+  dto.OrderCreateResponse:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      id:
+        type: integer
+      modified_at:
+        type: string
+      modified_by:
+        type: string
+      order_items:
+        items:
+          $ref: '#/definitions/model.OrderItemEntityModel'
+        type: array
+      user_id:
+        description: relations
+        type: integer
+    required:
+    - code
+    type: object
+  dto.OrderCreateResponseDoc:
+    properties:
+      body:
+        properties:
+          data:
+            $ref: '#/definitions/dto.OrderCreateResponse'
+          meta:
+            $ref: '#/definitions/response.Meta'
+        type: object
+    type: object
+  dto.OrderDeleteResponse:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      id:
+        type: integer
+      modified_at:
+        type: string
+      modified_by:
+        type: string
+      order_items:
+        items:
+          $ref: '#/definitions/model.OrderItemEntityModel'
+        type: array
+      user_id:
+        description: relations
+        type: integer
+    required:
+    - code
+    type: object
+  dto.OrderDeleteResponseDoc:
+    properties:
+      body:
+        properties:
+          data:
+            $ref: '#/definitions/dto.OrderDeleteResponse'
+          meta:
+            $ref: '#/definitions/response.Meta'
+        type: object
+    type: object
+  dto.OrderGetByIDResponse:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      id:
+        type: integer
+      modified_at:
+        type: string
+      modified_by:
+        type: string
+      order_items:
+        items:
+          $ref: '#/definitions/model.OrderItemEntityModel'
+        type: array
+      user_id:
+        description: relations
+        type: integer
+    required:
+    - code
+    type: object
+  dto.OrderGetByIDResponseDoc:
+    properties:
+      body:
+        properties:
+          data:
+            $ref: '#/definitions/dto.OrderGetByIDResponse'
+          meta:
+            $ref: '#/definitions/response.Meta'
+        type: object
+    type: object
+  dto.OrderGetResponseDoc:
+    properties:
+      body:
+        properties:
+          data:
+            items:
+              $ref: '#/definitions/model.OrderEntityModel'
+            type: array
+          meta:
+            $ref: '#/definitions/response.Meta'
+        type: object
+    type: object
+  dto.OrderUpdateRequest:
+    properties:
+      id:
+        type: integer
+      order_items:
+        items:
+          properties:
+            product_id:
+              type: integer
+            qty:
+              type: integer
+          type: object
+        type: array
+    required:
+    - id
+    type: object
+  dto.OrderUpdateResponse:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      id:
+        type: integer
+      modified_at:
+        type: string
+      modified_by:
+        type: string
+      order_items:
+        items:
+          $ref: '#/definitions/model.OrderItemEntityModel'
+        type: array
+      user_id:
+        description: relations
+        type: integer
+    required:
+    - code
+    type: object
+  dto.OrderUpdateResponseDoc:
+    properties:
+      body:
+        properties:
+          data:
+            $ref: '#/definitions/dto.OrderUpdateResponse'
+          meta:
+            $ref: '#/definitions/response.Meta'
+        type: object
+    type: object
+  model.OrderEntityModel:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      id:
+        type: integer
+      modified_at:
+        type: string
+      modified_by:
+        type: string
+      order_items:
+        items:
+          $ref: '#/definitions/model.OrderItemEntityModel'
+        type: array
+      user_id:
+        description: relations
+        type: integer
+    required:
+    - code
+    type: object
+  model.OrderItemEntityModel:
+    properties:
+      created_at:
+        type: string
+      created_by:
+        type: string
+      id:
+        type: integer
+      modified_at:
+        type: string
+      modified_by:
+        type: string
+      order_id:
+        description: relations
+        type: integer
+      product:
+        $ref: '#/definitions/model.ProductEntityModel'
+      product_id:
+        type: integer
+      qty:
+        type: integer
+    required:
+    - qty
+    type: object
+  model.ProductEntityModel:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      id:
+        type: integer
+      modified_at:
+        type: string
+      modified_by:
+        type: string
+      name:
+        type: string
+      order_items:
+        description: relations
+        items:
+          $ref: '#/definitions/model.OrderItemEntityModel'
+        type: array
+      tag:
+        type: string
+    required:
+    - code
+    - name
+    - tag
+    type: object
+  response.Meta:
+    properties:
+      info:
+        $ref: '#/definitions/abstraction.PaginationInfo'
+      message:
+        default: "true"
+        type: string
+      success:
+        default: true
+        type: boolean
+    type: object
+  response.errorResponse:
+    properties:
+      error:
+        type: string
+      meta:
+        $ref: '#/definitions/response.Meta'
+    type: object
+host: localhost:3032
+info:
+  contact: {}
+  description: This is a doc for gank-ecommerce-order.
+  title: gank-ecommerce-order
+  version: 0.0.1
+paths:
+  /orders:
+    get:
+      consumes:
+      - application/json
+      description: Get orders
+      parameters:
+      - in: query
+        name: created_at
+        type: string
+      - in: query
+        name: created_by
+        type: string
+      - in: query
+        name: modified_at
+        type: string
+      - in: query
+        name: modified_by
+        type: string
+      - in: query
+        name: page
+        type: integer
+      - in: query
+        name: page_size
+        type: integer
+      - in: query
+        name: sort
+        type: string
+      - in: query
+        name: sort_by
+        type: string
+      - in: query
+        name: user_id
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.OrderGetResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get orders
+      tags:
+      - orders
+    post:
+      consumes:
+      - application/json
+      description: Create orders
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.OrderCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.OrderCreateResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+      security:
+      - BearerAuth: []
+      summary: Create orders
+      tags:
+      - orders
+  /orders/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete orders
+      parameters:
+      - description: id path
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.OrderDeleteResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete orders
+      tags:
+      - orders
+    get:
+      consumes:
+      - application/json
+      description: Get orders by id
+      parameters:
+      - description: id path
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.OrderGetByIDResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get orders by id
+      tags:
+      - orders
+    patch:
+      consumes:
+      - application/json
+      description: Update orders
+      parameters:
+      - description: id path
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.OrderUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.OrderUpdateResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+      security:
+      - BearerAuth: []
+      summary: Update orders
+      tags:
+      - orders
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

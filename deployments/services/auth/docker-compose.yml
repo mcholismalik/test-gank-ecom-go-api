@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  auth:
+    container_name: auth01
+    image: mcholismalik/gank-ecom-auth:latest
+    ports:
+      - "3030:3030"
+    networks:
+      - my-postgres-net
+      - my-elastic-net
+
+networks:
+  my-postgres-net:
+    name: postgres_net
+  my-elastic-net:
+    name: elastic_net
