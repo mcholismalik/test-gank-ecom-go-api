@@ -21,7 +21,7 @@ This project consist of some dependencies
 ## Run
 ``` bash
 # run all instance
-$ ./run.sh 
+$ ./deployments/run.sh 
 ```
 
 ## Access
