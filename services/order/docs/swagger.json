@@ -9,7 +9,7 @@
     "host": "localhost:3032",
     "basePath": "/",
     "paths": {
-        "/orders": {
+        "/": {
             "get": {
                 "security": [
                     {
@@ -157,7 +157,7 @@
                 }
             }
         },
-        "/orders/{id}": {
+        "/{id}": {
             "get": {
                 "security": [
                     {

@@ -9,7 +9,7 @@
     "host": "localhost:3030",
     "basePath": "/",
     "paths": {
-        "/auth/login": {
+        "/login": {
             "post": {
                 "description": "Login user",
                 "consumes": [
@@ -61,7 +61,7 @@
                 }
             }
         },
-        "/auth/register": {
+        "/register": {
             "post": {
                 "security": [
                     {

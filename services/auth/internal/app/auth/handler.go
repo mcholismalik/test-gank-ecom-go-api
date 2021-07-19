@@ -31,7 +31,7 @@ func NewHandler(f *factory.Factory) *handler {
 // @Failure 400 {object} res.errorResponse
 // @Failure 404 {object} res.errorResponse
 // @Failure 500 {object} res.errorResponse
-// @Router /auth/login [post]
+// @Router /login [post]
 func (h *handler) Login(c echo.Context) error {
 	cc := c.(*abstraction.Context)
 
@@ -63,7 +63,7 @@ func (h *handler) Login(c echo.Context) error {
 // @Failure 400 {object} res.errorResponse
 // @Failure 404 {object} res.errorResponse
 // @Failure 500 {object} res.errorResponse
-// @Router /auth/register [post]
+// @Router /register [post]
 func (h *handler) Register(c echo.Context) error {
 	cc := c.(*abstraction.Context)
 

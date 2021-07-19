@@ -292,7 +292,7 @@ info:
   title: gank-ecommerce-order
   version: 0.0.1
 paths:
-  /orders:
+  /:
     get:
       consumes:
       - application/json
@@ -384,7 +384,7 @@ paths:
       summary: Create orders
       tags:
       - orders
-  /orders/{id}:
+  /{id}:
     delete:
       consumes:
       - application/json

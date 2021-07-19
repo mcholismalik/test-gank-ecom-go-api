@@ -32,7 +32,7 @@ func NewHandler(f *factory.Factory) *handler {
 // @Failure 400 {object} res.errorResponse
 // @Failure 404 {object} res.errorResponse
 // @Failure 500 {object} res.errorResponse
-// @Router /products [get]
+// @Router / [get]
 func (h *handler) Get(c echo.Context) error {
 	cc := c.(*abstraction.Context)
 
@@ -64,7 +64,7 @@ func (h *handler) Get(c echo.Context) error {
 // @Failure 400 {object} res.errorResponse
 // @Failure 404 {object} res.errorResponse
 // @Failure 500 {object} res.errorResponse
-// @Router /products/{id} [get]
+// @Router /{id} [get]
 func (h *handler) GetByID(c echo.Context) error {
 	cc := c.(*abstraction.Context)
 
@@ -97,7 +97,7 @@ func (h *handler) GetByID(c echo.Context) error {
 // @Failure 400 {object} res.errorResponse
 // @Failure 404 {object} res.errorResponse
 // @Failure 500 {object} res.errorResponse
-// @Router /products [post]
+// @Router / [post]
 func (h *handler) Create(c echo.Context) error {
 	cc := c.(*abstraction.Context)
 
@@ -130,7 +130,7 @@ func (h *handler) Create(c echo.Context) error {
 // @Failure 400 {object} res.errorResponse
 // @Failure 404 {object} res.errorResponse
 // @Failure 500 {object} res.errorResponse
-// @Router /products/{id} [patch]
+// @Router /{id} [patch]
 func (h *handler) Update(c echo.Context) error {
 	cc := c.(*abstraction.Context)
 
@@ -162,7 +162,7 @@ func (h *handler) Update(c echo.Context) error {
 // @Failure 400 {object} res.errorResponse
 // @Failure 404 {object} res.errorResponse
 // @Failure 500 {object} res.errorResponse
-// @Router /products/{id} [delete]
+// @Router /{id} [delete]
 func (h *handler) Delete(c echo.Context) error {
 	cc := c.(*abstraction.Context)
 

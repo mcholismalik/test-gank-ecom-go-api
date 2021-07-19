@@ -24,7 +24,7 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/products": {
+        "/": {
             "get": {
                 "security": [
                     {
@@ -182,7 +182,7 @@ var doc = `{
                 }
             }
         },
-        "/products/{id}": {
+        "/{id}": {
             "get": {
                 "security": [
                     {

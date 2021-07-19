@@ -304,7 +304,7 @@ info:
   title: gank-ecommerce-product
   version: 0.0.1
 paths:
-  /products:
+  /:
     get:
       consumes:
       - application/json
@@ -402,7 +402,7 @@ paths:
       summary: Create products
       tags:
       - products
-  /products/{id}:
+  /{id}:
     delete:
       consumes:
       - application/json

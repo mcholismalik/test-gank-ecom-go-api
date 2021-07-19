@@ -214,7 +214,7 @@ info:
   title: gank-ecommerce-auth
   version: 0.0.1
 paths:
-  /auth/login:
+  /login:
     post:
       consumes:
       - application/json
@@ -248,7 +248,7 @@ paths:
       summary: Login user
       tags:
       - auth
-  /auth/register:
+  /register:
     post:
       consumes:
       - application/json

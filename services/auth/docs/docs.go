@@ -24,7 +24,7 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/auth/login": {
+        "/login": {
             "post": {
                 "description": "Login user",
                 "consumes": [
@@ -76,7 +76,7 @@ var doc = `{
                 }
             }
         },
-        "/auth/register": {
+        "/register": {
             "post": {
                 "security": [
                     {
